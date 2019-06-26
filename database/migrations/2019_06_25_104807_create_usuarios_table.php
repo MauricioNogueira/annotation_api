@@ -18,8 +18,8 @@ class CreateUsuariosTable extends Migration
             $table->string('nome');
             $table->string('login');
             $table->string('password');
-            $table->string('email');
-            $table->string('token');
+            $table->string('email')->unique();
+            $table->string('token')->nullable();
             $table->timestamps();
         });
     }

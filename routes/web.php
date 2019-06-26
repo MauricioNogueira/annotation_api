@@ -16,3 +16,5 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/efetuar-login', 'AuthenticationController@efetuarLogin');
+
+$router->post('/registrar', 'AuthenticationController@registrar');
