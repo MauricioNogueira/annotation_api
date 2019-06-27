@@ -27,7 +27,7 @@ class RegistraRequest extends RequestAbstract
             'nome' => 'required',
             'email' => 'email|required|unique:usuarios',
             'login' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ];
     }
 
@@ -42,6 +42,7 @@ class RegistraRequest extends RequestAbstract
             'required' => 'Obrigatório',
             'email' => 'Não é um email válido',
             'unique' => 'Este email já foi cadastrado',
+            'confirmed' => 'Senha é divergente',
         ];
     }
 }

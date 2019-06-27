@@ -14,12 +14,13 @@ class AuthenticationController extends Controller
     public function registrar(RegistraRequest $request)
     {
         DB::beginTransaction();
+
         try {
             $usuario = Usuario::create([
-                'nome' => $request->nome,
-                'login' => $request->login,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'nome' => $request->nome_register,
+                'login' => $request->login_register,
+                'email' => $request->email_register,
+                'password' => Hash::make($request->password_register),
             ]);
 
             $usuario->token = Hash::make(rand(1, 1000000));
