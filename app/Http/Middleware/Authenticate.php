@@ -35,10 +35,31 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        $headers = [
+            'Access-Control-Allow-Origin'      => '*',
+            // 'Access-Control-Allow-Methods'     => 'POST, GET, OPTIONS, PUT, DELETE',
+            // 'Access-Control-Allow-Credentials' => 'true',
+            // 'Access-Control-Allow-Headers'     => 'Content-Type, Authorization, X-Requested-With'
+        ];
+ 
+        if ($request->isMethod('OPTIONS'))
+        {
+            return response()->json('{"method":"OPTIONS"}', 200, $headers);
         }
+ 
+        $response = $next($request);
 
-        return $next($request);
+        foreach($headers as $key => $value)
+        {
+            $response->header($key, $value);
+        }
+ 
+        return $response;
+        // 
+        // if ($this->auth->guard($guard)->guest()) {
+        //     return response('Unauthorized.', 401);
+        // }
+
+        // return $next($request);
     }
 }

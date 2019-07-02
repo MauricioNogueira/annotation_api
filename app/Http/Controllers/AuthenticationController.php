@@ -17,10 +17,10 @@ class AuthenticationController extends Controller
 
         try {
             $usuario = Usuario::create([
-                'nome' => $request->nome_register,
-                'login' => $request->login_register,
-                'email' => $request->email_register,
-                'password' => Hash::make($request->password_register),
+                'nome' => $request->nome,
+                'login' => $request->login,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
             ]);
 
             $usuario->token = Hash::make(rand(1, 1000000));

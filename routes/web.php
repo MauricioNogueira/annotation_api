@@ -15,7 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api/v2'], function () use($router) {
+$router->group(['prefix' => 'api/v2', 'middleware' => 'auth'], function () use($router) {
     $router->post('/efetuar-login', 'AuthenticationController@efetuarLogin');
     
     $router->post('/registrar', 'AuthenticationController@registrar');
